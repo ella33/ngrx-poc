@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class UsersService {
   constructor(private httpClient: HttpClient) { }
 
-  getAll() {
+  getAll(): Observable<any> {
     return this.httpClient.get('users');
   }
 }

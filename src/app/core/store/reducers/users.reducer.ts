@@ -1,15 +1,26 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer } from '@ngrx/store';
 import * as UsersActions from '@store/actions/users.actions';
+import { createInitialState, withLoadableReducer } from '@store/reducers/loadable.reducer';
+import { ILoadable } from '@store/reducers/loadable.reducer';
+import { IUser } from '@app/core/types/users.types';
 
-interface IUser {
-  firstName: string,
-  userName: string
-}
-
-interface State {
-  users: IUser[]
+export interface State {
+  users: ILoadable<IUser[]>;
 }
 
 const initialState: State = {
-  users: [],
+  users: createInitialState([]),
 };
+
+const usersReducerBase = () => createReducer(
+  initialState,
+);
+
+export const usersReducer = withLoadableReducer(
+  usersReducerBase,
+  {
+    loading: UsersActions.getUsersLoading,
+    done: UsersActions.getUsersSuccess,
+    error: UsersActions.getUsersFail,
+  },
+);

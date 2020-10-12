@@ -6,12 +6,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { ApiInterceptor } from './services/api.service';
 import { UsersService } from './services/users.service';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   imports: [
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     SharedModule,
   ],
@@ -24,4 +24,4 @@ import { SharedModule } from '../shared/shared.module';
     UsersService,
   ],
 })
-export class CoreModule {};
+export class CoreModule {}
