@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
 
+The purpose of the project is to be an Angular POC which demonstrates the use of:
+- lazy loaded modules
+- ngrx
+- UI: Angular material/Flex layout
+
+You can check it out here: https://ngrx-poc.netlify.app
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
