@@ -11,4 +11,8 @@ export class UsersService {
   getAll(): Observable<any> {
     return this.httpClient.get('users');
   }
+
+  getUserDetails(id: number): Observable<any> {
+    return this.httpClient.get(`users/${id}`);
+  }
 }

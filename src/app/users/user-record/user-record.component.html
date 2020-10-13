@@ -1,0 +1,70 @@
+<div>
+  <h1>{{(userRecord$ | async).data?.name}}</h1>
+
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Personal details">
+      <ng-template matTabContent>
+        <info-field>
+          <label>Username:</label>
+          <span>{{(userRecord$ | async).data?.userName}}</span>
+        </info-field>
+
+        <info-field>
+          <label>Email address:</label>
+          <span>{{(userRecord$ | async).data?.email}}</span>
+        </info-field>
+
+        <info-field>
+          <label>Phone:</label>
+          <span>{{(userRecord$ | async).data?.phone}}</span>
+        </info-field>
+
+        <info-field>
+          <label>Website:</label>
+          <span>{{(userRecord$ | async).data?.website}}</span>
+        </info-field>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Address">
+      <ng-template matTabContent>
+        <info-field>
+          <label>Street:</label>
+          <span>{{(userRecord$ | async).data?.address.street}}</span>
+        </info-field>
+
+        <info-field>
+          <label>City:</label>
+          <span>{{(userRecord$ | async).data?.address.city}}</span>
+        </info-field>
+
+        <info-field>
+          <label>Suite:</label>
+          <span>{{(userRecord$ | async).data?.address.suite}}</span>
+        </info-field>
+
+        <info-field>
+          <label>Zipcode:</label>
+          <span>{{(userRecord$ | async).data?.address.zipcode}}</span>
+        </info-field>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Company">
+      <ng-template matTabContent>
+        <info-field>
+          <label>Name:</label>
+          <span>{{(userRecord$ | async).data?.company.name}}</span>
+        </info-field>
+
+        <info-field>
+          <label>Business:</label>
+          <span>{{(userRecord$ | async).data?.company.business}}</span>
+        </info-field>
+
+        <info-field>
+          <label>Quote:</label>
+          <span>{{(userRecord$ | async).data?.company.quote}}</span>
+        </info-field>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

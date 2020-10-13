@@ -16,16 +16,11 @@ export function createInitialState<T>(initialData: T): ILoadable<T> {
   };
 }
 
-const initialState: ILoadable<null> = createInitialState(null);
-
-export const withLoadableReducer = (reducer: () => void, actions: any) => (
+export const withLoadableReducer = (initialState, actions: any) => (
   createReducer(
     initialState,
     on(actions.loading, (state) => ({ ...state, loading: true, error: false, done: false })),
     on(actions.error, (state) => ({ ...state, loading: false, error: true, done: true })),
-    on(actions.done, (state, { data }) => {
-      console.log(data);
-      return { ...state, data, loading: false, error: false, done: true };
-    }),
+    on(actions.done, (state, { data }) => ({ ...state, data, loading: false, error: false, done: true })),
   )
 );

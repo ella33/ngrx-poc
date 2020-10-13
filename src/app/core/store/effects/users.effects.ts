@@ -1,19 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { getUsers, getUsersSuccess } from '@store/actions/users.actions';
+import * as UsersActions from '@store/actions/users.actions';
 import { UsersService } from '@services/users.service';
-import { IUser } from '@app/core/types/users.types';
-
-const mapServerToLocalUsers = (data: any) => data.map((user: any): IUser => ({
-  id: user.id,
-  name: user.name,
-  userName: user.username,
-  email: user.email,
-  phone: user.phone,
-  website: user.website,
-}));
+import { mapServerToLocalUserDetails, mapServerToLocalUsers } from './mappingFunctions/users';
 
 @Injectable({
   providedIn: 'root',
@@ -25,11 +16,29 @@ export class UsersEffects {
   ) {}
 
   loadUsers$ = createEffect(() => this.actions$.pipe(
-    ofType(getUsers),
-    mergeMap(() => this.usersService.getAll()
-    .pipe(
-      map((data: any[]) => getUsersSuccess({ data: mapServerToLocalUsers(data) }),
-      catchError(() => EMPTY))
-    ))
-  ));
+    ofType(UsersActions.getUsers),
+    mergeMap(() =>
+      this.usersService.getAll()
+        .pipe(
+          map((data: any[]) => {
+            UsersActions.getUsersLoading();
+            return UsersActions.getUsersSuccess({ data: mapServerToLocalUsers(data) });
+          }),
+          catchError(() => of(UsersActions.getUsersFail()))
+        )
+      ))
+    );
+
+  loadUserDetails$ = createEffect(() => this.actions$.pipe(
+    ofType(UsersActions.getUserDetails),
+    mergeMap((action) =>
+      this.usersService.getUserDetails(action.id)
+        .pipe(
+          map((data: any) => {
+            return UsersActions.getUserDetailsSuccess({ data: mapServerToLocalUserDetails(data) });
+          }),
+          catchError(() => of(UsersActions.getUserDetailsFail()))
+        )
+      ))
+    );
 }
