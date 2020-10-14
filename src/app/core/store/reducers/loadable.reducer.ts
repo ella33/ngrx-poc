@@ -1,5 +1,3 @@
-import { createReducer, on } from '@ngrx/store';
-
 export interface ILoadable<T> {
   data: T;
   loading: boolean;
@@ -16,11 +14,21 @@ export function createInitialState<T>(initialData: T): ILoadable<T> {
   };
 }
 
-export const withLoadableReducer = (initialState, actions: any) => (
-  createReducer(
-    initialState,
-    on(actions.loading, (state) => ({ ...state, loading: true, error: false, done: false })),
-    on(actions.error, (state) => ({ ...state, loading: false, error: true, done: true })),
-    on(actions.done, (state, { data }) => ({ ...state, data, loading: false, error: false, done: true })),
-  )
-);
+export const withLoadableReducer = (baseReducer, actions) => {
+  return (state, action) => {
+    const { type, data } = action;
+    switch (type) {
+      case actions.loading.type:
+        state = { ...state, loading: true, error: false, done: false };
+        break;
+      case actions.error.type:
+        state = { ...state, loading: false, error: true, done: true };
+        break;
+      case actions.done.type:
+        state = { ...state, data, loading: false, error: false, done: true };
+        break;
+    }
+
+    return baseReducer(state, action);
+  };
+};

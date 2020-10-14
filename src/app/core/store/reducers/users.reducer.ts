@@ -1,4 +1,5 @@
 import * as UsersActions from '@store/actions/users.actions';
+import { createReducer, on } from '@ngrx/store';
 import { createInitialState, withLoadableReducer } from '@store/reducers/loadable.reducer';
 import { ILoadable } from '@store/reducers/loadable.reducer';
 import { IUser } from '@app/core/types/users.types';
@@ -8,16 +9,20 @@ export interface State {
   userRecord: ILoadable<IUser>;
 }
 
-const usersInitialState: Partial<State> = {
-  users: createInitialState([]),
+const usersInitialState: ILoadable<IUser[]> = {
+  ...createInitialState([]),
 };
 
-const userRecordInitialState: Partial<State> = {
-  userRecord: createInitialState(null),
+const userRecordInitialState: ILoadable<IUser> = {
+  ...createInitialState(null),
 };
+
+const usersBaseReducer = createReducer(usersInitialState);
+
+const userRecordBaseReducer = createReducer(userRecordInitialState);
 
 export const usersReducer = withLoadableReducer(
-  usersInitialState,
+  usersBaseReducer,
   {
     initiate: UsersActions.getUsers,
     loading: UsersActions.getUsersLoading,
@@ -27,7 +32,7 @@ export const usersReducer = withLoadableReducer(
 );
 
 export const userRecordReducer = withLoadableReducer(
-  userRecordInitialState,
+  userRecordBaseReducer,
   {
     initiate: UsersActions.getUserDetails,
     loading: UsersActions.getUserDetailsLoading,

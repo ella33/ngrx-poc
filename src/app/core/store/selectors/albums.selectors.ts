@@ -3,12 +3,7 @@ import { IAppState, IUsersState } from '@store/reducers';
 
 const selectFeature = createFeatureSelector<IAppState, IUsersState>('users');
 
-export const selectUsers = createSelector(
+export const selectAlbums = createSelector(
   selectFeature,
-  (state) => state.users,
-);
-
-export const selectUserRecord = createSelector(
-  selectFeature,
-  (state) => state.userRecord,
+  (state) => state.albums,
 );

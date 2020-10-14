@@ -1,0 +1,13 @@
+info-field {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+
+  > * {
+    padding: 10px;
+  }
+
+  label {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+  }
+}

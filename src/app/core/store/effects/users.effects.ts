@@ -20,12 +20,9 @@ export class UsersEffects {
     mergeMap(() =>
       this.usersService.getAll()
         .pipe(
-          map((data: any[]) => {
-            UsersActions.getUsersLoading();
-            return UsersActions.getUsersSuccess({ data: mapServerToLocalUsers(data) });
-          }),
-          catchError(() => of(UsersActions.getUsersFail()))
-        )
+          map((data: any[]) => UsersActions.getUsersSuccess({ data: mapServerToLocalUsers(data) })),
+          catchError(() => of(UsersActions.getUsersFail())),
+        ),
       ))
     );
 
@@ -34,11 +31,9 @@ export class UsersEffects {
     mergeMap((action) =>
       this.usersService.getUserDetails(action.id)
         .pipe(
-          map((data: any) => {
-            return UsersActions.getUserDetailsSuccess({ data: mapServerToLocalUserDetails(data) });
-          }),
-          catchError(() => of(UsersActions.getUserDetailsFail()))
-        )
+          map((data: any) => UsersActions.getUserDetailsSuccess({ data: mapServerToLocalUserDetails(data) })),
+          catchError(() => of(UsersActions.getUserDetailsFail())),
+        ),
       ))
     );
 }
