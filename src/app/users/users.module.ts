@@ -9,6 +9,7 @@ import { AlbumsEffects } from '@store/effects/albums.effects';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users/users.component';
@@ -25,6 +26,7 @@ import { UserRecordComponent } from './user-record/user-record.component';
     MatTableModule,
     MatTabsModule,
     MatExpansionModule,
+    MatChipsModule,
 
     /** Store */
     StoreModule.forFeature(

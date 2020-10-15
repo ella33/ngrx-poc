@@ -101,13 +101,15 @@ $app-accent: (
   )
 );
 
-$primary: mat-palette($app-primary);
-$accent:  mat-palette($app-accent);
-$warm: mat-palette($app-warm);
-$theme: mat-dark-theme($primary, $accent, $warm);
+$dark-primary: mat-palette($app-primary);
+$dark-accent:  mat-palette($app-accent);
+$dark-warm: mat-palette($app-warm);
 
-@include angular-material-theme($theme);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warm);
+
+@include angular-material-theme($dark-theme);
 
 info-field label {
-  color: mat-color($app-accent, A700);
+  // color: mat-color($app-accent, A700);
+  background-color: mat-color($app-accent, 900);
 }

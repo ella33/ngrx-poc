@@ -4,10 +4,5 @@ body, html {
   margin: 0;
 }
 
-.mat-tab-body-wrapper {
-  min-height: 250px;
-
-  .mat-tab-body-content {
-    padding: 10px 20px;
-  }
-}
+@import './styles/tabs.scss';
+@import './styles/expansion-panel.scss';

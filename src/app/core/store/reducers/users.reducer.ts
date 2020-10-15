@@ -1,21 +1,12 @@
 import * as UsersActions from '@store/actions/users.actions';
-import { createReducer, on } from '@ngrx/store';
+import { createReducer } from '@ngrx/store';
 import { createInitialState, withLoadableReducer } from '@store/reducers/loadable.reducer';
 import { ILoadable } from '@store/reducers/loadable.reducer';
 import { IUser } from '@app/core/types/users.types';
 
-export interface State {
-  users: ILoadable<IUser[]>;
-  userRecord: ILoadable<IUser>;
-}
+const usersInitialState: ILoadable<IUser[]> = createInitialState([]);
 
-const usersInitialState: ILoadable<IUser[]> = {
-  ...createInitialState([]),
-};
-
-const userRecordInitialState: ILoadable<IUser> = {
-  ...createInitialState(null),
-};
+const userRecordInitialState: ILoadable<IUser> = createInitialState(null);
 
 const usersBaseReducer = createReducer(usersInitialState);
 

@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { IAppState } from '@store/reducers';
 import { getUserDetails } from '@store/actions/users.actions';
 import { getAlbums } from '@store/actions/albums.actions';
+import { getPhotos } from '@store/actions/photos.actions';
 import { Observable, Subscription } from 'rxjs';
 import { IUser } from '@app/core/types/users.types';
 import { selectUserRecord } from '@store/selectors/users.selectors';
@@ -35,5 +36,19 @@ export class UserRecordComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  trackAlbumsById(index: number, album: IAlbum): string {
+    return album.id.toString();
+  }
+
+  onAlbumPanelExpanded(album: IAlbum): void {
+    /**
+     * Album photo collections are loaded on request, when the
+     * album panel is expanded.
+     */
+    if (!album.photos) {
+      this.store.dispatch(getPhotos({ albumId: album.id }));
+    }
   }
 }

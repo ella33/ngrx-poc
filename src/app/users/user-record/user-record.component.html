@@ -68,9 +68,18 @@
     </mat-tab>
   </mat-tab-group>
 
-  <h2>Albums</h2>
+  <div class="app-albums-section-title">
+    <h2>Albums</h2>
+    <mat-chip-list>
+      <mat-chip selected color="primary">{{(albums$ | async).data?.length}}</mat-chip>
+    </mat-chip-list>
+  </div>
+
   <mat-accordion multi>
-    <mat-expansion-panel *ngFor="let album of (albums$ | async).data">
+    <mat-expansion-panel
+      *ngFor="let album of (albums$ | async).data; trackBy: trackAlbumsById"
+      (afterExpand)="onAlbumPanelExpanded(album)"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{album.title}}
