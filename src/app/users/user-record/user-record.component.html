@@ -75,7 +75,7 @@
     </mat-chip-list>
   </div>
 
-  <mat-accordion multi>
+  <mat-accordion>
     <mat-expansion-panel
       *ngFor="let album of (albums$ | async).data; trackBy: trackAlbumsById"
       (afterExpand)="onAlbumPanelExpanded(album)"
@@ -85,6 +85,7 @@
           {{album.title}}
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <app-photos-grid [photos]="album.photos"></app-photos-grid>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

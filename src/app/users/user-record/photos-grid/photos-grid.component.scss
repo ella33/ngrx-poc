@@ -1,0 +1,12 @@
+.app-photo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.app-photos-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
+  column-gap: 20px;
+  row-gap: 20px;
+}

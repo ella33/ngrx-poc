@@ -25,9 +25,9 @@ import { HeaderComponent } from './components/header/header.component';
     FlexLayoutModule,
   ],
   exports: [
-    CommonModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    MatButtonModule,
     HeaderComponent,
   ],
 })

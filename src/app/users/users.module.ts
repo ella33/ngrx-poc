@@ -10,14 +10,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users/users.component';
 import { UserRecordComponent } from './user-record/user-record.component';
+import { PhotosGridComponent } from './user-record/photos-grid/photos-grid.component';
 
 
 @NgModule({
-  declarations: [UsersComponent, UserRecordComponent],
+  declarations: [UsersComponent, UserRecordComponent, PhotosGridComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -27,6 +29,7 @@ import { UserRecordComponent } from './user-record/user-record.component';
     MatTabsModule,
     MatExpansionModule,
     MatChipsModule,
+    MatCardModule,
 
     /** Store */
     StoreModule.forFeature(

@@ -9,7 +9,6 @@ export class AlbumsService {
   constructor(private httpClient: HttpClient) { }
 
   getAlbumsByUser(userId: number): Observable<any> {
-    console.log('in servce');
     return this.httpClient.get('albums', { params: { userId: userId.toString() } });
   }
 }

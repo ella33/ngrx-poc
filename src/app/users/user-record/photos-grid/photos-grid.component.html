@@ -1,0 +1,9 @@
+<div class="app-photos-grid-wrapper">
+  <mat-card *ngFor="let photo of photos; trackBy: trackPhotoById" class="app-photo-card">
+    <mat-card-header>
+      <img [src]="photo.thumbnailUrl" mat-card-avatar />
+      <mat-card-title>{{photo.title}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="photo.url">
+  </mat-card>
+</div>
