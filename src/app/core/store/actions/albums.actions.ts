@@ -6,10 +6,6 @@ export const getAlbums = createAction(
   props<{ userId: number }>(),
 );
 
-export const getAlbumsLoading = createAction(
-  '[User Record Page] Get albums loading',
-);
-
 export const getAlbumsSuccess = createAction(
   '[User Record Page] Get albums success',
   props<{ data: IAlbum[] }>(),

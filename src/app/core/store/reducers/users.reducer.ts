@@ -16,7 +16,6 @@ export const usersReducer = withLoadableReducer(
   usersBaseReducer,
   {
     initiate: UsersActions.getUsers,
-    loading: UsersActions.getUsersLoading,
     done: UsersActions.getUsersSuccess,
     error: UsersActions.getUsersFail,
   },
@@ -26,7 +25,6 @@ export const userRecordReducer = withLoadableReducer(
   userRecordBaseReducer,
   {
     initiate: UsersActions.getUserDetails,
-    loading: UsersActions.getUserDetailsLoading,
     done: UsersActions.getUserDetailsSuccess,
     error: UsersActions.getUserDetailsFail,
   },

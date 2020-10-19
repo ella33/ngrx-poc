@@ -4,10 +4,14 @@ import { ILoadable } from './loadable.reducer';
 
 export interface IUsersState {
   users: ILoadable<IUser[]>;
+}
+
+export interface IUserRecordState {
   userRecord: ILoadable<IUser>;
   albums: ILoadable<IAlbum[]>;
 }
 
 export interface IAppState {
   users: IUsersState;
+  userRecord: IUserRecordState;
 }

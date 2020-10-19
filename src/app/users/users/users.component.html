@@ -25,4 +25,5 @@
     <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: tableColumns" [routerLink]="row.id"></mat-row>
   </mat-table>
+  <app-loading-indicator [when]="(users$ | async).loading"></app-loading-indicator>
 </div>

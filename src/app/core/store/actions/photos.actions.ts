@@ -6,10 +6,6 @@ export const getPhotos = createAction(
   props<{ albumId: number }>(),
 );
 
-export const getPhotosLoading = createAction(
-  '[User Record Page] Get photos loading',
-);
-
 export const getPhotosSuccess = createAction(
   '[User Record Page] Get photos success',
   props<{ albumId: number, data: IPhoto[] }>(),

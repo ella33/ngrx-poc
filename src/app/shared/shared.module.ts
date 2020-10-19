@@ -5,12 +5,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HeaderComponent } from './components/header/header.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    LoadingIndicatorComponent,
   ],
   imports: [
     CommonModule,
@@ -23,12 +26,12 @@ import { HeaderComponent } from './components/header/header.component';
     MatToolbarModule,
     MatButtonModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
-    ReactiveFormsModule,
-    FlexLayoutModule,
-    MatButtonModule,
     HeaderComponent,
+    FlexLayoutModule,
+    LoadingIndicatorComponent,
   ],
 })
 export class SharedModule {}

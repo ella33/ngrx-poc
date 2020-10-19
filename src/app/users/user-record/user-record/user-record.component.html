@@ -85,7 +85,9 @@
           {{album.title}}
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-photos-grid [photos]="album.photos"></app-photos-grid>
+      <app-loading-indicator [when]="album.photos?.loading">
+        <app-photos-grid [photos]="album.photos?.data"></app-photos-grid>
+      </app-loading-indicator>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

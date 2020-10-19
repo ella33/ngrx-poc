@@ -9,11 +9,20 @@ const albumsInitialState: ILoadable<IAlbum[]> = createInitialState([]);
 
 const albumsBaseReducer = createReducer(
   albumsInitialState,
+  on(PhotosActions.getPhotos, (state, { albumId }) => ({
+    ...state,
+    data: state.data.map((album) => {
+      if (album.id === albumId) {
+        return { ...album, photos: { loading: true } };
+      }
+      return album;
+    }),
+  })),
   on(PhotosActions.getPhotosSuccess, (state, { albumId, data }) => ({
     ...state,
     data: state.data.map((album) => {
       if (album.id === albumId) {
-        return { ...album, photos: data };
+        return { ...album, photos: { data } };
       }
       return album;
     }),
@@ -23,7 +32,7 @@ const albumsBaseReducer = createReducer(
 export const albumsReducer = withLoadableReducer(
   albumsBaseReducer,
   {
-    loading: AlbumsActions.getAlbumsLoading,
+    initiate: AlbumsActions.getAlbums,
     done: AlbumsActions.getAlbumsSuccess,
     error: AlbumsActions.getAlbumsFail,
   },

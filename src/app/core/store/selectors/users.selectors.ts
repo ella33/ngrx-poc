@@ -8,7 +8,3 @@ export const selectUsers = createSelector(
   (state) => state.users,
 );
 
-export const selectUserRecord = createSelector(
-  selectFeature,
-  (state) => state.userRecord,
-);

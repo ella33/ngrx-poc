@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UsersComponent } from './users/users.component';
-import { UserRecordComponent } from './user-record/user-record.component';
 
 const routes: Routes = [
   {
@@ -12,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: UserRecordComponent,
+    loadChildren: () => import('./user-record/user-record.module').then(m => m.UserRecordModule),
   },
 ];
 

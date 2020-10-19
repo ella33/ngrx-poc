@@ -5,7 +5,7 @@ import { PhotosService } from '@services/photos.service';
 import * as AlbumsActions from '@store/actions/albums.actions';
 import * as PhotosActions from '@store/actions/photos.actions';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { mapServerToLocalAlbums } from './mappingFunctions/albums';
 import { mapServerToLocalPhotos } from './mappingFunctions/photos';
 

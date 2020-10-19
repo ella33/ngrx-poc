@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import * as UsersActions from '@store/actions/users.actions';
 import { UsersService } from '@services/users.service';
-import { mapServerToLocalUserDetails, mapServerToLocalUsers } from './mappingFunctions/users';
+import { mapServerToLocalUsers } from './mappingFunctions/users';
 
 @Injectable({
   providedIn: 'root',
@@ -22,17 +22,6 @@ export class UsersEffects {
         .pipe(
           map((data: any[]) => UsersActions.getUsersSuccess({ data: mapServerToLocalUsers(data) })),
           catchError(() => of(UsersActions.getUsersFail())),
-        ),
-      ))
-    );
-
-  loadUserDetails$ = createEffect(() => this.actions$.pipe(
-    ofType(UsersActions.getUserDetails),
-    mergeMap((action) =>
-      this.usersService.getUserDetails(action.id)
-        .pipe(
-          map((data: any) => UsersActions.getUserDetailsSuccess({ data: mapServerToLocalUserDetails(data) })),
-          catchError(() => of(UsersActions.getUserDetailsFail())),
         ),
       ))
     );
