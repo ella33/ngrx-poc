@@ -1,29 +1,30 @@
 <div>
   <h1>Users</h1>
 
-  <mat-table [dataSource]="(users$ | async).data">
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
-    </ng-container>
+  <app-loading-indicator [when]="!(users$ | async).data.length && (users$ | async).loading">
+    <mat-table [dataSource]="(users$ | async).data">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="username">
-      <mat-header-cell *matHeaderCellDef>User name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.userName}}</mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef>User name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.userName}}</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="phone">
-      <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.phone}}</mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.phone}}</mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: tableColumns" [routerLink]="row.id"></mat-row>
-  </mat-table>
-  <app-loading-indicator [when]="(users$ | async).loading"></app-loading-indicator>
+      <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: tableColumns" [routerLink]="row.id"></mat-row>
+    </mat-table>
+  </app-loading-indicator>
 </div>

@@ -5,7 +5,7 @@ import { PhotosService } from '@services/photos.service';
 import * as AlbumsActions from '@store/actions/albums.actions';
 import * as PhotosActions from '@store/actions/photos.actions';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { mapServerToLocalAlbums } from './mappingFunctions/albums';
 import { mapServerToLocalPhotos } from './mappingFunctions/photos';
 
@@ -21,7 +21,7 @@ export class AlbumsEffects {
 
   loadAlbumsByUser$ = createEffect(() => this.actions$.pipe(
     ofType(AlbumsActions.getAlbums),
-    mergeMap((action) =>
+    switchMap((action) =>
       this.albumsService.getAlbumsByUser(action.userId)
         .pipe(
           map((data: any[]) => AlbumsActions.getAlbumsSuccess({ data: mapServerToLocalAlbums(data) })),
@@ -32,7 +32,7 @@ export class AlbumsEffects {
 
   loadPhotosByAlbum$ = createEffect(() => this.actions$.pipe(
     ofType(PhotosActions.getPhotos),
-    mergeMap((action) =>
+    switchMap((action) =>
       this.photosService.getPhotosByAlbum(action.albumId)
         .pipe(
           map((data: any[]) => PhotosActions.getPhotosSuccess({ albumId: action.albumId, data: mapServerToLocalPhotos(data) })),

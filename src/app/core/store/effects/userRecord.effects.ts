@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import * as UserRecordActions from '@store/actions/userRecord.actions';
 import { UsersService } from '@services/users.service';
 import { mapServerToLocalUserDetails } from './mappingFunctions/users';
@@ -17,7 +17,7 @@ export class UserRecordEffects {
 
   loadUserDetails$ = createEffect(() => this.actions$.pipe(
     ofType(UserRecordActions.getUserDetails),
-    mergeMap((action) =>
+    switchMap((action) =>
       this.usersService.getUserDetails(action.id)
         .pipe(
           map((data: any) => UserRecordActions.getUserDetailsSuccess({ data: mapServerToLocalUserDetails(data) })),

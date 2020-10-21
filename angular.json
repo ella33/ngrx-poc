@@ -129,6 +129,6 @@
   },
   "defaultProject": "ngrx-poc",
   "cli": {
-    "defaultCollection": "@angular-devkit/schematics"
+    "defaultCollection": "@ngrx/schematics"
   }
 }

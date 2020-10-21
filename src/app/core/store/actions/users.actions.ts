@@ -13,17 +13,3 @@ export const getUsersSuccess = createAction(
 export const getUsersFail = createAction(
   '[Users Page] Get users fail',
 );
-
-export const getUserDetails = createAction(
-  '[User Record Page] Get user details',
-  props<{ id: number }>(),
-);
-
-export const getUserDetailsSuccess = createAction(
-  '[User Record Page] Get user details success',
-  props<{ data: IUser }>(),
-);
-
-export const getUserDetailsFail = createAction(
-  '[User Record Page] Get user details fail'
-);
