@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,11 +7,11 @@ import { Subject } from 'rxjs';
 export class ApiCancelRequestService {
   private cancelPendingRequests$ = new Subject<void>();
 
-  public cancelPendingRequests() {
+  public cancelPendingRequests(): void {
     this.cancelPendingRequests$.next();
   }
 
-  public onCancelPendingRequests() {
+  public onCancelPendingRequests(): Observable<void> {
     return this.cancelPendingRequests$.asObservable();
   }
 }
